@@ -3,8 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Klinik: Form Konsultasi</title>
-        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+        <title>Klinik: Resume Pasien Rawat Jalan</title>
         <link rel="icon" href="image/logo KLKLINIK icon only.png" />
         <link href="https://cdn.datatables.net/1.11.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -12,6 +11,9 @@
             crossorigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
+            body {
+                overflow-x: hidden;
+            }
 
             .container-reset {
                 padding: 0;
@@ -33,56 +35,24 @@
                 border: 1px solid #8d948f;
             }
 
+
             input::-webkit-outer-spin-button,
             input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
                 margin: 0;
             }
 
-            h4{
-                color: white;
-                background-color: #23397a;
-                padding: 10px;
-                margin-top: 20px;
-            }
-
             /* Firefox */
             input[type='number'] {
                 -moz-appearance: textfield;
             }
-            
-            button {
-                margin-top: 10px;
-                padding: 10px 20px;
-                background-color: #23397a;
-                color: #fff;
-                border: none;
-                border-radius: 10px;
-                margin: 10px;
-                cursor: pointer;
-                transition: 0.3s;
-            }
-            button:hover{
-                background-color: #fff;
-                color: #23397a;
-            }
 
-            table.table.custom td{
-                border: none;
-            }
-            table.table.custom {
-                width: 100%;
-                border-collapse: collapse;
-                border: 1px solid #8d948f;
-            }
-            
-            table.table.custom td {
-                width: 33.33%;
-                /* text-align: center; */
-            }
-            
-            .form-check {
-                margin: 10px; /* Adjust the spacing between radio buttons */
+            table,
+            tr,
+            td {
+                width: 80px;
+                word-wrap: break-word;
+                border: 1px solid black;
             }
 
             .addNewTindakan:hover,
@@ -91,134 +61,1012 @@
             .addNewICD9:hover {
                 color: white;
             }
-            #signature-pad canvas {
-                border: 2px solid #000;
+
+            .section-title {
+                font-size: 18px;
+                margin: 0;
+                font-weight: bold;
             }
-            div.table-container {
-                max-width: max-content; /* Adjust the maximum height as needed */
-                overflow-x: auto;
+
+            .make-it-line {
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid #000000;
             }
         </style>
     </head>
     <body>
-        <div class="container container-reset mt-4 mb-4 border border-secondary w-75 rounded">
+        <div class="container container-reset mt-4 mb-4 border border-secondary w-md-75 w-sm-auto rounded">
             <div class="bg-KlKlinik py-3 px-3">
                 <div class="container d-flex justify-content-between flex-column flex-md-row">
-                    <img src="image/logo KLKLINIK white.png" class="mt-3 mb-2" height="50" alt="">
-                    <div class="mt-4">
-                        <h4>FORMULIR KONSULTASI
-                        </h4>
+                    <img src="image/logo KLKLINIK white.png" class="mt-3" height="50" alt="">
+                    <div class="mt-3">
+                        <h3 class="p-3">PENGKAJIAN AWAL MEDIS & KEPERAWATAN RAWAT JALAN</h3>
                     </div>
                 </div>
-
+                <p class="text-end mx-4">(dilengkapi dalam waktu 2 jam pertama pasien tiba di ruang poliklinik rawat
+                    jalan)
+                </p>
             </div>
             <div class="container px-4 py-3">
                 <form action="">
                     <div class="mb-1 row mb-3">
-                        <table class="table">
-                            <tr>
-                                <th class="w-25">Nama</th>
-                                <td>Robby Purba</td>
-                            </tr>
-                            <tr>
-                                <th class="w-25">Tanggal Lahir</th>
-                                <td>03/07/1801</td>
-                            </tr>
-                            <tr>
-                                <th class="w-25">Nomor RM</th>
-                                <td>12345</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="mb-1 row mb-3">
-                        <label for="inputName" class="col-md-3 col-form-label fw-bold">Kepada</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control  w-100" id="kepada">
+                        <label for="name" class="col-md-4 col-form-label fw-bold">Nama</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control  w-100" id="name" value="Asep Kasep Putra Balek"
+                                readonly>
                         </div>
                     </div>
                     <div class="mb-1 row mb-3">
-                        <label for="inputName" class="col-md-3 col-form-label fw-bold">Bagian</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="bagian">
+                        <label for="tglLahir" class="col-md-4 col-form-label fw-bold">Tanggal Lahir</label>
+                        <div class="col-md-8">
+                            <input type="date" class="form-control" id="tglLahir" value="2021-12-02" readonly>
                         </div>
                     </div>
                     <div class="mb-1 row mb-3">
-                        <label for="inputName" class="col-md-3 col-form-label fw-bold">Diagnosa</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="diagnosa">
+                        <label for="nomorRM" class="col-md-4 col-form-label fw-bold">Nomor RM</label>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control" id="nomorRM" value="1312" readonly>
                         </div>
                     </div>
                     <div class="mb-1 row mb-3">
-                        <label for="inputName" class="col-md-3 col-form-label fw-bold">Ikhtisar Klinik</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="ikhtisar">
+                        <label for="inputName" class="col-md-4 col-form-label fw-bold">Perubahan Alamat (jika
+                            ada)</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="perubahanAlamat" value="">
                         </div>
                     </div>
-                    <div class="mb-1 row mb-3">
-                        <label for="inputName" class="col-md-3 col-form-label fw-bold">Terapi dan Tindakan yang
-                            sudah diberikan</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="tindakan">
+                    <div class="border px-2 py-2 rounded" style="background-color: #C3E0E5;">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="tanggal" class="fw-bold">Tgl:</label>
+                                <input type="date" name="" class="form-control">
+
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="jam" class="fw-bold">Jam:</label>
+                                <input type="text" name="" class="form-control">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="ruangan" class="fw-bold">Ruangan/Poliklinik:</label>
+                                <input type="text" name="" class="form-control">
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="sumber data" class="fw-bold">Sumber Data:</label>
+                                <div class="d-flex flex-column flex-lg-row">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="data">
+                                        <label class="form-check-label">
+                                            Pasien
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="data">
+                                        <label class="form-check-label">
+                                            Keluarga
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="data">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            Lainnya
+                                            <input type="text" name="" class="form-control-sm mx-2">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="sumber data" class="fw-bold">Rujukan</label>
+                                <div class="d-flex flex-column flex-lg-row">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="rujukan">
+                                        <label class="form-check-label">
+                                            tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="rujukan">
+                                        <label class="form-check-label">
+                                            ya
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="rujukan">
+                                        <label class="form-check-label d-inline-flex flex-column flex-lg-row">
+                                            puskesmas
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="rujukan">
+                                        <label class="form-check-label d-inline-flex flex-column flex-lg-row">
+                                            Dokter
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="rujukan">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            RS
+                                            <input type="text" name="" class="form-control-sm mx-2">
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="diagnosaRujukan" class="fw-bold">Diagnosa Rujukan</label>
+                                <input class="form-control" type="text" name="diagnosa rujukan"
+                                    placeholder="tulis diagnosa rujukan">
+                            </div>
                         </div>
                     </div>
-                    <div class="table-container">
-                        <label for="alamat" class="fw-bold">TS yang diharapkan</label>
-                        <table class="table custom" style="border: 1px solid #8d948f;">
-                            <tbody>
+                    <div class="row">
+                        <div class="col-md-12 mb-2 mt-5">
+                            <p class="section-title">1. Keluhan Utama</p>
+                            <textarea class="form-control" style="border: 1px solid #8d948f;"
+                                id="exampleFormControlTextarea1" rows="8"></textarea>
+                        </div>
+                        <p class="section-title">2. Pemeriksaan Fisik</p>
+                        <div class="col-md-4 mb-2">
+                            <label for="BB" class="fw-bold">Berat Badan</label>
+                            <input type="number" class="form-control" placeholder="Berat badan dalam kg">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="TB" class="fw-bold">Tinggi Badan</label>
+                            <input type="number" class="form-control" placeholder="Tinggi badan dalam cm">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="suhu" class="fw-bold">Suhu</label>
+                            <input type="number" class="form-control" placeholder="Suhu badan dalam &deg;C">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="td" class="fw-bold">TD</label>
+                            <input type="number" class="form-control" placeholder="TD dalam mmHg">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="nadi" class="fw-bold">Nadi</label>
+                            <input type="number" class="form-control" placeholder="TD dalam x/menit">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="p" class="fw-bold">P</label>
+                            <input type="number" class="form-control" placeholder="P dalam x/menit">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <div class="mx-3">
+                                <label for="p" class="fw-bold">a. Masalah Nutrisi</label>
+                                <div class="d-flex flex-column flex-lg-row">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="nutrition">
+                                        <label class="form-check-label">
+                                            tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="nutrition">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row flex-shrink-0">
+                                            ya, jika ya
+                                            <input type="text" name="" class="form-control-sm mx-1 mt-0">
+                                            <!-- <div class="form-group"> -->
+                                            <label for="p" class="fw-bold mx-2">Telah dirujuk ke ahli gizi</label>
+                                            <div class="d-flex flex-column flex-lg-row">
+                                                <div class="form-check mt-1 mx-2">
+                                                    <input class="form-check-input" type="radio" value=""
+                                                        name="ahliGizi">
+                                                    <label class="form-check-label">
+                                                        ya
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mt-1 mx-2">
+                                                    <input class="form-check-input" type="radio" value=""
+                                                        name="ahliGizi">
+                                                    <label
+                                                        class="form-check-label d-inline-flex flex-column flex-lg-row">
+                                                        tidak
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- </div> -->
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-group mx-3">
+                                <label for="p" class="fw-bold">b. Terdapat Luka:</label>
+                                <!-- <div class="d-flex flex-column flex-lg-row"> -->
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="luka">
+                                    <label class="form-check-label">
+                                        Luka Operasi
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="luka">
+                                    <label class="form-check-label">
+                                        Luka Dekubitus
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="luka">
+                                    <label class="form-check-label d-flex flex-column flex-lg-row">
+                                        Lainnya
+                                        <input type="text" name="" class="form-control-sm mx-2">
+                                    </label>
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="p" class="fw-bold">Kondisi Luka:</label>
+                            <!-- <div class="d-flex flex-column flex-lg-row"> -->
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="radio" value="" name="condition">
+                                <label class="form-check-label">
+                                    Bersih
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="radio" value="" name="condition">
+                                <label class="form-check-label">
+                                    Kering
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="radio" value="" name="condition">
+                                <label class="form-check-label">
+                                    Pendarahan
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="radio" value="" name="condition">
+                                <label class="form-check-label d-flex flex-column flex-lg-row">
+                                    Lainnya
+                                    <input type="text" name="" class="form-control-sm mx-2">
+                                </label>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <p class="section-title">
+                            3. Riwayat Psikososial:
+                        </p>
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="p" class="fw-bold">a. Status Psikologis</label>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="psikologi">
+                                        <label class="form-check-label">
+                                            Tenang/Stabil
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="psikologi">
+                                        <label class="form-check-label">
+                                            Cemas/Takut
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="psikologi">
+                                        <label class="form-check-label">
+                                            Marah
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="psikologi">
+                                        <label class="form-check-label">
+                                            Sedih
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="psikologi">
+                                        <label class="form-check-label">
+                                            Kecenderungan Bunuh Diri
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="psikologi">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            Lainnya, Sebutkan
+                                            <input type="text" name="" class="form-control-sm mx-2">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="mental" class="fw-bold">b. Status Mental</label>
+                                <!-- <div class="d-flex flex-column flex-lg-row flex-wrap"> -->
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="mental">
+                                    <label class="form-check-label">
+                                        Sadar dan orientasi baik
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="mental">
+                                    <label class="form-check-label d-flex flex-column flex-lg-row">
+                                        Ada masalah perilaku, sebutkan <input type="text" name=""
+                                            class="form-control-sm mx-2 w-50">
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="mental">
+                                    <label class="form-check-label d-flex flex-column flex-lg-row">
+                                        Perilaku kekerasan yang dialami pasien sebelumnya:<input type="text" name=""
+                                            class="form-control-sm mx-2 w-50">
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="mental">
+                                    <label class="form-check-label">
+                                        Tidak dapat dinilai
+                                    </label>
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <p class="section-title">
+                            4. Riwayat Kesehatan:
+                        </p>
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group mx-3">
+                                <label for="riwayatPenyakit" class="fw-bold">a. Riwayat Penyakit Lalu</label>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="riwayatPenyakit">
+                                        <label class="form-check-label">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="riwayatPenyakit">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            Ya, Penyakit
+                                            <input type="text" name="" class="form-control-sm mx-2">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="mx-md-3 mx-sm-0">
+                                <li>
+                                    <label for="pernahDirawat" class="fw-bold">Pernah dirawat</label>
+                                    <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value="" name="pernahDirawat">
+                                            <label class="form-check-label">
+                                                Tidak
+                                            </label>
+                                        </div>
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value="" name="pernahDirawat">
+                                            <label
+                                                class="form-check-label d-flex flex-column flex-lg-row flex-wrap flex-shrink-1">
+                                                Ya, Diagnosa
+                                                <input type="text" name="diagnosa" class="form-control-sm mx-2">
+                                                Kapan
+                                                <input type="text" name="waktuDiagnosa" class="form-control-sm mx-2">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="pernahOperasi" class="fw-bold">Pernah dioperasi</label>
+                                    <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value="" name="pernahOperasi">
+                                            <label class="form-check-label">
+                                                Tidak
+                                            </label>
+                                        </div>
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value="" name="pernahOperasi">
+                                            <label class="form-check-label d-flex flex-column flex-lg-row">
+                                                Ya, Jenis Operasi
+                                                <input type="text" name="operasi" class="form-control-sm mx-2">
+                                                Kapan
+                                                <input type="text" name="waktuOperasi" class="form-control-sm mx-2">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="masihDalamPengobatan" class="fw-bold">Masih dalam pengobatan</label>
+                                    <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value=""
+                                                name="masihDalamPengobatan">
+                                            <label class="form-check-label">
+                                                Tidak
+                                            </label>
+                                        </div>
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value=""
+                                                name="masihDalamPengobatan">
+                                            <label class="form-check-label d-flex flex-column flex-lg-row">
+                                                Ya, Obat
+                                                <input type="text" name="operasi" class="form-control-sm mx-2">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <div class="mx-md-3 mx-sm-0">
+                                <label for="riwayatPenyakitKeluarga" class="fw-bold">b. Riwayat Penyakit
+                                    Keluarga</label>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value=""
+                                            name="riwayatPenyakitKeluarga">
+                                        <label class="form-check-label">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value=""
+                                            name="riwayatPenyakitKeluarga">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            Ya, jika ya:
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="hipertensi">
+                                                <label class="form-check-label " for="hipertensi">
+                                                    Hipertensi
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="jantung">
+                                                <label class="form-check-label" for="jantung">
+                                                    Jantung
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="dm">
+                                                <label class="form-check-label" for="dm">
+                                                    DM
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="penyakitLainnya">
+                                                <label class="form-check-label d-flex flex-column flex-lg-row"
+                                                    for="penyakitLainnya">
+                                                    Lainnya
+                                                    <input type="text" name="" class="form-control-sm mx-1">
+                                                </label>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="ketergantungan" class="fw-bold">c. Ketergantungan terhadap</label>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="ketergantungan">
+                                        <label class="form-check-label">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="ketergantungan">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            Ya, jika ya:
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="obat">
+                                                <label class="form-check-label " for="obat">
+                                                    Obat-obatan
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="rokok">
+                                                <label class="form-check-label" for="rokok">
+                                                    Rokok
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="alkohol">
+                                                <label class="form-check-label" for="alkohol">
+                                                    Alkohol
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="ketergantunganLainnya">
+                                                <label class="form-check-label" for="ketergantunganLainnya">
+                                                    Lainnya
+                                                    <input type="text" name="" class="form-control-sm">
+                                                </label>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="alergi" class="fw-bold">d. Riwayat energi</label>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap mx-md-3 mx-sm-0">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="alergi">
+                                        <label class="form-check-label">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-md-2 mx-sm-0">
+                                        <input class="form-check-input" type="radio" value="" name="alergi">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row">
+                                            Ya, jika ya:
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="obat"
+                                                    name="alergiTerhadap">
+                                                <label class="form-check-label " for="obat">
+                                                    Obat
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="makanan"
+                                                    name="alergiTerhadap">
+                                                <label class="form-check-label" for="makanan">
+                                                    Makanan
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="alergiLainnya" name="alergiTerhadap">
+                                                <label class="form-check-label" for="alergiLainnya">
+                                                    Lainnya
+                                                    <input type="text" name="" class="form-control-sm mx-1">
+                                                </label>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mx-md-3 mb-2">
+                            <label for="input-reaksi" class="fw-bold">Reaksi alergi</label>
+                            <input type="text" class="form-control-sm w-75">
+                        </div>
+                        <p class="section-title">
+                            5. Kebutuhan komunikasi dan edukasi:
+                        </p>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="hambatanPembelajaran" class="fw-bold">a.Terdapat hambatan dalam
+                                    pembelajaran</label>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="hambatanPembelajaran">
+                                    <label class="form-check-label">
+                                        Tidak
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-2">
+                                    <input class="form-check-input" type="radio" value="" name="hambatanPembelajaran">
+                                    <label class="form-check-label">
+                                        Ya, Jika ya:
+                                        <div class="d-flex flex-wrap">
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="checkPembelajaran">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                    Pendengaran
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="penglihatan">
+                                                <label class="form-check-label" for="penglihatan">
+                                                    Penglihatan
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="kognitif">
+                                                <label class="form-check-label" for="kognitif">
+                                                    Kognitif
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="fisik">
+                                                <label class="form-check-label" for="fisik">
+                                                    Fisik
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="Budaya">
+                                                <label class="form-check-label" for="budaya">
+                                                    Budaya
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="emosi">
+                                                <label class="form-check-label" for="emosi">
+                                                    Emosi
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="bahasa">
+                                                <label class="form-check-label" for="bahasa">
+                                                    Bahasa
+                                                </label>
+                                            </div>
+                                            <div class="form-check mx-1">
+                                                <input class="form-check-input" type="checkbox" value="" id="lainnya">
+                                                <label class="form-check-label" for="lainnya">
+                                                    Lainnya
+                                                    <input type="text" name="" class="form-control-sm">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="penerjemah" class="fw-bold">b. Dibutuhkan penerjemah</label>
+                                <div class="d-flex flex-column flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="penerjemah">
+                                        <label class="form-check-label">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="penrejemah">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row flex-shrink-0">
+                                            ya, jika ya sebutkan
+                                            <input type="text" name="" class="form-control-sm mx-1 mt-0">
+                                            <!-- <div class="form-group"> -->
+                                            <label for="p" class="mx-1">Bahasa Isyarat</label>
+                                            <div class="d-flex flex-column flex-lg-row">
+                                                <div class="form-check mt-1 mx-2">
+                                                    <input class="form-check-input" type="radio" value=""
+                                                        name="bhsIsyarat">
+                                                    <label class="form-check-label">
+                                                        ya
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mt-1 mx-2">
+                                                    <input class="form-check-input" type="radio" value=""
+                                                        name="bhsIsyarat">
+                                                    <label
+                                                        class="form-check-label d-inline-flex flex-column flex-lg-row">
+                                                        tidak
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- </div> -->
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="edukasi" class="fw-bold">c. Kebutuhan edukasi</label>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="checkbox" value="" name="edukasi">
+                                        <label class="form-check-label">
+                                            Diagnosa dan Manajemen Penyakit
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="checkbox" value="" name="edukasi">
+                                        <label class="form-check-label">
+                                            Obat-obatan/Terapi
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="checkbox" value="" name="edukasi">
+                                        <label class="form-check-label">
+                                            Diet dan Nutrisi
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="checkbox" value="" name="edukasi">
+                                        <label class="form-check-label">
+                                            Rehabilitasi medik
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="checkbox" value="" name="edukasi">
+                                        <label class="form-check-label">
+                                            Manajemen nyeri
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="checkbox" value="" name="edukasi">
+                                        <label class="form-check-label">
+                                            Tindakan Keperawatan:
+                                            <input type="text" name="" class="form-control-sm">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <p class="section-title">6. Risiko Cedera/Jatuh</p>
+                        <div class="col-md-12 col-sm-12 mb-2 mx-4 d-flex flex-column flex-lg-row flex-wrap">
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="aktivitasDanMobilisasi">
+                                <label class="form-check-label">
+                                    Tidak
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="aktivitasDanMobilisasi">
+                                <label class="form-check-label d-flex flex-column flex-lg-row flex-shrink-0">
+                                    Ya, jika ya:
+                                    <div class="d-flex flex-column flex-lg-row">
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value="" name="levelResiko">
+                                            <label class="form-check-label">
+                                                rendah
+                                            </label>
+                                        </div>
+                                        <div class="form-check mt-1 mx-2">
+                                            <input class="form-check-input" type="radio" value="" name="levelResiko">
+                                            <label class="form-check-label d-inline-flex flex-column flex-lg-row">
+                                                tinggi
+                                            </label>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <label for="resiko" class="mx-4">Jika resiko jatuh sedang atau tinggi, dipasang sticker resiko
+                            jatuh
+                        </label>
+                        <div class="col-md-12 col-sm-12 mb-2 mx-4 d-flex flex-column flex-lg-row flex-wrap">
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="sticker">
+                                <label class="form-check-label">
+                                    Ya
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="sticker">
+                                <label class="form-check-label d-flex flex-column flex-lg-row flex-shrink-0">
+                                    Tidak
+                                </label>
+                            </div>
+                        </div>
+                        <p class="section-title">7. Status Fungsional</p>
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group mx-md-3 mx-sm-0">
+                                <label for="aktivitasDanMobilisasi">Aktivitas dan Mobilisasi</label>
+                                <div class="d-flex flex-column flex-wrap">
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="aktivitas">
+                                        <label class="form-check-label">
+                                            Mandiri
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-2">
+                                        <input class="form-check-input" type="radio" value="" name="aktivitas">
+                                        <label class="form-check-label d-flex flex-column flex-lg-row flex-shrink-0">
+                                            Perlu bantuan, sebutkan
+                                            <input type="text" name="" class="form-control-sm mx-1 mt-0">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2 mx-4">
+                            <label for="">Alat bantu jalan, sebutkan</label>
+                            <input type="text" name="" class="form-control w-50">
+                        </div>
+                        <p class="section-title">8. Skala nyeri</p>
+                        <div class="col-md-12 col-sm-12 mb-2 table-responsive">
+                            <table class="table table-bordered col-md-12 col-sm-12">
+                                <thead>
+                                    <tr>
+                                        <th colspan=" 6" class="text-center">
+                                            <h3>Skor Skala nyeri</h3>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center">
+                                        <td scope="col-3">Tidak nyeri (0)</td>
+                                        <td scope="col-3">Nyeri ringan (1-3)</td>
+                                        <td scope="col-3" colspan="2">Nyeri Sedang (4-6)</td>
+                                        <td scope="col-3" colspan="2">Nyeri Berat (8-10)</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td scope="col"><img src="image/emotNyeri/1.png" width="80px" alt=""></td>
+                                        <td scope="col"><img src="image/emotNyeri/2.png" width="80px" alt=""></td>
+                                        <td scope="col"><img src="image/emotNyeri/3.png" width="80px" alt=""></td>
+                                        <td scope="col"><img src="image/emotNyeri/4.png" width="80px" alt=""></td>
+                                        <td scope="col"><img src="image/emotNyeri/5.png" width="80px" alt=""></td>
+                                        <td scope="col"><img src="image/emotNyeri/6.png" width="80px" alt=""></td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td scope="col">Tidak Nyeri</td>
+                                        <td scope="col">Nyeri Ringan</td>
+                                        <td scope="col">Nyeri Yang Mengganggu</td>
+                                        <td scope="col">Nyeri Yang Menyusahkan</td>
+                                        <td scope="col">Nyeri Hebat</td>
+                                        <td scope="col">Nyeri Yang Sangat Hebat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="skalaNyeri" class="form-label fw-bold">Skala Nyeri (berdasarkan tabel)</label>
+                            <input type="text" class="form-control" id="skalaNyeri" aria-describedby="skalaNyeri">
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label for="karakteristik" class="form-label fw-bold">Karakteristik nyeri</label>
+                            <!-- <div class="d-flex flex-column flex-lg-row flex-wrap"> -->
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="karakteristik">
+                                <label class="form-check-label">
+                                    tajam
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="durasi">
+                                <label class="form-check-label">
+                                    tumpul
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="durasi">
+                                <label class="form-check-label">
+                                    burning
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="durasi">
+                                <label class="form-check-label">
+                                    lainnya
+                                    <input type="text" name="" class="form-control-sm">
+                                </label>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <label for="nyeriHilang" class="form-label fw-bold">Nyeri hilang dengan</label>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="nyeriHilang">
+                                <label class="form-check-label">
+                                    Minum obat
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="nyeriHilang">
+                                <label class="form-check-label">
+                                    Makan
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="nyeriHilang">
+                                <label class="form-check-label">
+                                    istirahat
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="nyeriHilang">
+                                <label class="form-check-label">
+                                    Mendengarkan musik
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-2">
+                                <input class="form-check-input" type="checkbox" value="" name="nyeriHilang">
+                                <label class="form-check-label">
+                                    lainnya
+                                    <input type="text" name="" class="form-control-sm">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label for="lokasi" class="form-label fw-bold">Lokasi nyeri</label>
+                            <input type="text" class="form-control" id="lokasi" aria-describedby="lokasi">
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label for="durasi" class="form-label fw-bold">Durasi nyeri</label>
+                            <input type="text" class="form-control" id="durasi" aria-describedby="durasi">
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label for="frekuensi" class="form-label fw-bold">frekuensi nyeri</label>
+                            <input type="text" class="form-control" id="lokasi" aria-describedby="frekuensi">
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <p class="section-title mt-2">9. Masalah Keperawatan (diisi dengan angka berdasarkan urutan
+                                prioritas
+                                masalah) </p>
+                            <table class="table table-bordered w-25">
                                 <tr>
-                                    <td><input type="radio" name="option" value="Option 1"> Konsultasi</td>
-                                    <td><input type="radio" name="option" value="Option 2"> Alih Rawat</td>
-                                    <td><input type="radio" name="option" value="Option 3"> Rawat Bersama</td>
-                                  </tr>
-                                 <tr>
-                                    <td><br>
-                                        Tanggal<input type="date" class="form-control w-75" id="datepicker">
-                                    </td>
+                                    <th style="width: 20%;">
+                                        Nomor prioritas
+                                    </th>
+                                    <th>
+                                        Masalah
+                                    </th>
                                 </tr>
                                 <tr>
-                                    <td><br>
-                                        Dokter Yang Meminta
+                                    <td>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Resiko Gangguan Jalan Nafas
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div id="signature-pad">
-                                            <canvas style="height: 150px;" id="signature-canvas" ></canvas>
-                                        </div>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Resiko Gangguan Perfusi Serebral
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <h4>HASIL KONSULTASI</h4>
-                    <div class="row">
-                        <div class="col-md-12 mb-2">
-                            <div class="form-group">
-                                <textarea class="form-control" style="border: 1px solid #8d948f;" id="exampleFormControlTextarea1" rows="8">
-                                </textarea>
+                                <tr>
+                                    <td>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Resiko Jatuh
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Gangguan Rasa Nyaman/Nyeri
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Gangguan mobilitas Fisik
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Gangguan Komunikasi
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="number" class="form-control" name="">
+                                    </td>
+                                    <td>
+                                        Lainnya, sebutkan <input type="text" name="" class="form-control">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <p class="section-title mt-2">10. Rencana Tindakan </p>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-2">
-                            <div class="form-group">
-                                <br>
-                                Tanggal<input type="date" class="form-control w-25" id="datepicker">
-                                <br>
-                                Dokter/Konsulen
-                                <div id="signature-pad">
-                                    <canvas style="height: 150px; min-width: 30%; max-width: 100%;" id="signature-canvas" ></canvas>
-                                </div>
-                            </div>
+                        <div class="col-md-12 mb-4">
+                            <button type="submit" class="btn bg-KlKlinik">Kirim</button>
                         </div>
-                    </div>
-                    
-                    <div class="col-md-12 mb-4">
-                        <button type="submit" class="btn bg-KlKlinik">Simpan</button>
                     </div>
                 </form>
             </div>
-
         </div>
-        
+        <script src="patientResume.js"></script>
+
     </body>
 </html>

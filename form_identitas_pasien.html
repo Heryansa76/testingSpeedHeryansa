@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Klinik: Form BPJS</title>
+        <link rel="icon" href="image/logo KLKLINIK icon only.png" />
+        <link href="https://cdn.datatables.net/1.11.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous" />
+        <script src="script.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            .container-reset {
+                padding: 0;
+            }
+
+            .bg-KlKlinik {
+                background-color: #23397a;
+                color: white;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            input[type="number"],
+            input[type="email"] {
+                border: 1px solid #8d948f;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            */
+
+            /* Firefox */
+            input[type='number'] {
+                -moz-appearance: textfield;
+            }
+
+            input[type="radio"]:checked {
+                background-color: #23397a;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    </head>
+    <body>
+        <div class="container container-reset mt-4 mb-4  border border-secondary w-75">
+            <div class="bg-KlKlinik py-3 px-3">
+                <div class="container d-flex justify-content-between flex-column flex-md-row">
+                    <img src="image/logo KLKLINIK white.png" class="mt-3" height="50" alt="">
+                    <div class="mt-3">
+                        <p class="p-3">FORM/KLK-PMKP/2.1/1.2.1</p>
+                    </div>
+                </div>
+                <h3>Identitas Pasien (<em>Patient Identity</em>)</h3>
+            </div>
+            <div class="container px-4 py-3">
+                <form action="">
+                    <div class="row">
+                        <div class="col-md-12 mt-3 mb-2">
+                            <div class="""">
+                                <label for="exampleInputEmail1" class="fw-bold">Nama Lengkap (<em>full
+                                        name</em>)</label>
+                                <input type="text" class="form-control" id="father" aria-describedby="emailHelp"
+                                    placeholder="Tulis Nama Lengkap">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="father" class="fw-bold">Nama Ayah (<em>father's name</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Tulis Nama Ayah">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="mother" class="fw-bold">Nama Ibu (<em>mother's name</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Tulis Nama Ibu">
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <label for="exampleInput" class="fw-bold">Nama Suami/Istri (<em>husband/wife’s
+                                    name</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Tulis Nama Suami/Istri">
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <div class=" ">
+                                <label for="gender" class="fw-bold">Jenis Kelamin (<em>sex</em>)**</label>
+                                <div class="d-flex flex-column flex-lg-row">
+                                    <div class="form-check mt-1 mx-1">
+                                        <input class="form-check-input" type="radio" value="" id="flexRadioDefault"
+                                            name="sex">
+                                        <label class="form-check-label" for="flexRadioDefault">
+                                            Laki-laki
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-1 mx-1">
+                                        <input class="form-check-input" type="radio" value="" name="sex">
+                                        <label class="form-check-label">
+                                            Perempuan
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-2">
+                            <label for="place" class="fw-bold">Tempat Lahir (<em>place of birth</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Tempat Lahir">
+                        </div>
+                        <div class="col-lg-6 mt-3 mb-2">
+                            <label for="place" class="fw-bold">Tanggal Lahir (<em>date of birth</em>)</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <div class="col-lg-4 col-md-12 mt-3 mb-2">
+                            <label for="address" class="fw-bold">Alamat (<em>address</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Tulis Alamat">
+                        </div>
+                        <div class="col-lg-4 col-md-12 mt-3 mb-2">
+                            <label for="kelurahan" class="fw-bold">Kelurahan (<em>urban village</em>) </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Kelurahan">
+                        </div>
+                        <div class="col-lg-4 col-md-12 mt-3 mb-2"> <label for="kecamatan" class="fw-bold">Kecamatan
+                                (<em>sub district</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Kecamatan">
+                        </div>
+                        <div class="col-lg-4 col-md-12 mt-3 mb-2">
+                            <label for="city" class="fw-bold">Kabupaten/Kota (<em>regency/city</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Kabupaten/Kota">
+                        </div>
+                        <div class="col-lg-4 col-md-12 mt-3 mb-2">
+                            <label for="posCode" class="fw-bold">Kode Pos (<em>postal code</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Kode Pos">
+                        </div>
+                        <div class="col-lg-4 col-md-12 mt-3 mb-2">
+                            <label for="posCode" class="fw-bold">Provinsi (<em>region</em>)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Provinsi">
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <label for="grade" class="fw-bold">Pendidikan (<em>grade</em>)**</label>
+                            <div class="d-flex flex-column flex-lg-row">
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        SD
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        SMP
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        SMA
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        Diploma
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        Sarjana
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        Pasca Sarjana
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        Doktor
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="grade">
+                                    <label class="form-check-label">
+                                        Tidak Tamat/Tidak Sekolah
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-2">
+                            <label for="city" class="fw-bold">Telpon(<em>Phone
+                                    Number</em>)</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Nomor Telepon">
+                        </div>
+                        <div class="col-md-6 mt-3 mb-2">
+                            <label for="city" class="fw-bold">Nomor HP(<em>Mobile Phone
+                                    Number</em>)</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Nomor HP">
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <label for="exampleInput" class="fw-bold">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Email">
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <div class=" ">
+                                <label for="exampleInput" class="fw-bold">Agama (<em>religion</em>)</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Tulis Agama">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <label for="pekerjaan" class="fw-bold">Pekerjaan (<em>current employment</em>)
+                                **</label>
+                            <div class="d-flex flex-column flex-lg-row">
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="employment">
+                                    <label class="form-check-label">
+                                        Pegawai Swasta
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="employment">
+                                    <label class="form-check-label">
+                                        Wiraswasta
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="employment">
+                                    <label class="form-check-label">
+                                        Ibu Rumah Tangga
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="employment">
+                                    <label class="form-check-label">
+                                        Tidak Bekerja
+                                    </label>
+                                </div>
+                                <div class="form-check mt-1 mx-1">
+                                    <input class="form-check-input" type="radio" value="" name="employment">
+                                    <label class="form-check-label d-inline-flex flex-column flex-lg-row">
+                                        Lainnya
+                                        <input type="text" name="" id="" class="form-control-sm mx-2">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <label for="exampleInput" class="fw-bold">Alamat Kantor (<em>office address</em>)
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Alamat Kantor">
+                        </div>
+                        <div class="col-md-4 mt-3 mb-2">
+                            <label for="exampleInput" class="fw-bold mb-sm-0 mb-md-4 mb-lg-0">No.KTP/SIM/Passport
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Kewarganegaraan">
+                        </div>
+                        <div class="col-md-4 mt-3 mb-2">
+                            <label for="exampleInput" class="fw-bold">Kewarganegaraan (<em>nationality</em>)
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Kewarganegaraan">
+                        </div>
+                        <div class="col-md-4 mt-3 mb-2">
+                            <label for="exampleInput" class="fw-bold">Golongan Darah (<em>blood type</em>)
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                placeholder="Tulis Golongan Darah">
+                        </div>
+                        <div class="col-md-12 mt-3 mb-2">
+                            <label for="pekerjaan" class="fw-bold">Status Perkawinan (<em>marital status</em>)
+                            </label>
+                            <div class="form-check mt-1 mx-1">
+                                <input class="form-check-input" type="radio" value="" name="status">
+                                <label class="form-check-label">
+                                    Kawin
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-1">
+                                <input class="form-check-input" type="radio" value="" name="status">
+                                <label class="form-check-label">
+                                    Belum Kawin
+                                </label>
+                            </div>
+                            <div class="form-check mt-1 mx-1">
+                                <input class="form-check-input" type="radio" value="" name="status">
+                                <label class="form-check-label">
+                                    Janda/Duda
+                                </label>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12 border rounded mt-4 mb-4 px-3 py-3 bg-KlKlinik text-white ">
+                            <div class="form-check mt-1 mx-1">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Dengan mencentang kotak ini dan mengeklik tombol "Kirim" di bawah ini, saya
+                                    menyatakan dan menegaskan bahwa saya telah membaca dan mengisi data dengan
+                                    benar,
+                                    dan saya bertanggung jawab terhadap kebenaran data yang saya isi. </label>
+                            </div>
+                        </div> -->
+                        <div class="col-md-6 ml-auto mb-2 d-flex justify-content-md-start mt-5">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Orang tua
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value=""">
+                                    <label class=" form-check-label" for="flexCheckDefault">
+                                    Pasien
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <input type="text" name="" id="" class="mb-2">
+                                    </label>
+                                </div>
+                                Nama
+                                <input type="text" name="" id="" class="mb-2 form-control">
+                                <div id="signaturePad1"> <!-- Unique ID for the first signature pad -->
+                                    <p>Tanda Tangan:</p>
+                                    <canvas
+                                        style="height: 150px; min-width: 30%; max-width: 100%; border: 1px solid black;"
+                                        id="signature-canvas-1"></canvas>
+                                    <div class="mb-2">
+                                        <button id="clear1" type="button">Clear</button>
+                                        <!-- Unique ID for the first clear button -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ml-auto mb-2 d-flex justify-content-md-end mt-5">
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <p>Jakarta,</p>
+                                    <input type="date" name="" id="" class="form-control-sm mb-2 mx-1"><br>
+                                </div>
+
+                                Nama Petugas:
+                                <input type="text" name="" id="" class="mb-2 form-control">
+                                <div id="signaturePad2"> <!-- Unique ID for the second signature pad -->
+                                    <p>Tanda Tangan Petugas:</p>
+                                    <canvas
+                                        style="height: 150px; min-width: 30%; max-width: 100%; border: 1px solid black;"
+                                        id="signature-canvas-2"></canvas>
+                                    <div class="mb-2">
+                                        <button id="clear2" type="button">Clear</button>
+                                        <!-- Unique ID for the second clear button -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <button type="submit" class="btn bg-KlKlinik">Kirim</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            var canvas1 = document.getElementById("signature-canvas-1");
+            var signaturePad1 = new SignaturePad(canvas1, {
+                minWidth: 1,
+                maxWidth: 4,
+            });
+            let clearBtn1 = document.getElementById("clear1");
+            clearBtn1.addEventListener('click', function () {
+                signaturePad1.clear();
+            });
+
+            var canvas2 = document.getElementById("signature-canvas-2");
+            var signaturePad2 = new SignaturePad(canvas2, {
+                minWidth: 1,
+                maxWidth: 4,
+            });
+            let clearBtn2 = document.getElementById("clear2");
+            clearBtn2.addEventListener('click', function () {
+                signaturePad2.clear();
+            });
+        </script>
+
+    </body>
+</html>

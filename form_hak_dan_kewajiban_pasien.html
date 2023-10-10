@@ -44,9 +44,11 @@
                 background-color: #23397a;
             }
 
-            #signature-pad-1 canvas, #signature-pad-2 canvas {
+            #signaturePad1 canvas,#signaturePad2 canvas {
                 border: 2px solid #000;
                 cursor: crosshair;
+                min-width: 50%;
+                max-width: 100%;
             }
         </style>
     </head>
@@ -130,23 +132,22 @@
                             </div>
                         </div>  
 
-                        <div class="container text-center ">
+                        <div class="container text-center">
                             <div class="row">
-                                <div class="col">
-                                    <div id="signature-pad-1">
+                                <div class="col-6">
+                                    <div id="signaturePad1">
                                         <label>PASIEN/KELUARGA</label><br>
                                         <canvas id="signature-canvas-1" ></canvas>
                                     </div>
-                                    <button class="btn btn-primary" id="hapus-button">Reset</button>
+                                    <button class="btn btn-primary" id="clear1" type="button">Reset</button>
     
                                 </div>
-                                <div class="col">
-                                    <div id="signature-pad-2">
+                                <div class="col-6">
+                                    <div id="signaturePad2">
                                         <label>PETUGAS</label><br>
                                         <canvas id="signature-canvas-2" ></canvas>
                                     </div>
-                                    <button class="btn btn-primary" id="hapus-button">Reset</button>
-    
+                                    <button class="btn btn-primary" id="clear2" type="button">Reset</button>
                                 </div>
                             </div>                    
                         </div>
@@ -160,51 +161,24 @@
         </div>
 
         <script>
-            //FUNCTION UNTUK TTD
-            // Assuming you have two signature pads with unique IDs: signature-pad-1 and signature-pad-2
-            const hapusButton = document.getElementById('hapus-button');
-            const saveButton = document.getElementById('save-button');
-            const savedSignatureImg = document.getElementById('saved-signature');
-        
-            // Get the canvas elements by their unique IDs
-            const canvas1 = document.getElementById('signature-canvas-1');
-            const canvas2 = document.getElementById('signature-canvas-2');
-
-        
-            // Initialize SignaturePad for each canvas
-            const signaturePad1 = new SignaturePad(canvas1, {
-                backgroundColor: 'white',
+            var canvas1 = document.getElementById("signature-canvas-1");
+            var signaturePad1 = new SignaturePad(canvas1, {
                 minWidth: 1.2,
                 maxWidth: 1.2,
             });
-        
-            const signaturePad2 = new SignaturePad(canvas2, {
-                backgroundColor: 'white',
-                minWidth: 1.2,
-                maxWidth: 1.2,
-            });
-        
-            hapusButton.addEventListener('click', () => {
-                // Clear the specific canvas when the "Hapus" button is clicked
+            let clearBtn1 = document.getElementById("clear1");
+            clearBtn1.addEventListener('click', function () {
                 signaturePad1.clear();
-                signaturePad2.clear();
-                signaturePad3.clear();
-                
-                savedSignatureImg.style.display = 'none'; // Hide the saved signature when clearing
             });
-        
-            saveButton.addEventListener('click', () => {
-                // Check which canvas is currently active (based on your UI logic)
-                // For example, if you have radio buttons to select a canvas, you can check their states
-                const canvasIsActive1 = true; // Replace with your logic to determine which canvas is active
-        
-                if (canvasIsActive1) {
-                    savedSignatureImg.style.display = 'block';
-                    savedSignatureImg.src = signaturePad1.toDataURL();
-                } else {
-                    savedSignatureImg.style.display = 'block';
-                    savedSignatureImg.src = signaturePad2.toDataURL();
-                }
+
+            var canvas2 = document.getElementById("signature-canvas-2");
+            var signaturePad2 = new SignaturePad(canvas2, {
+                minWidth: 1.2,
+                maxWidth: 1.2,
+            });
+            let clearBtn2 = document.getElementById("clear2");
+            clearBtn2.addEventListener('click', function () {
+                signaturePad2.clear();
             });
         </script>
     </body>
